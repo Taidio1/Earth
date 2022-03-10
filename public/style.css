@@ -34,7 +34,8 @@ body{
     text-decoration: none;
     color: white;
     font-family: 'Poppins', sans-serif;
-    font-weight: 200;
+    font-weight: 500;
+    font-size: 1.2em;
 }
 
 .title-container{

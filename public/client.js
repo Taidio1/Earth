@@ -18,7 +18,7 @@ const near = 0.1;
 const far = 1000;
 
 camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.z = 2;
+camera.position.z = 3;
 scene.add(camera);
 
 // renderer setup
@@ -33,6 +33,8 @@ renderer.setClearColor(0x000000, 0.0);
 
 // orbit control setup
 const controls = new OrbitControls(camera, renderer.domElement);
+
+//#region Earth
 
 // earth geometry
 const earthGeometry = new THREE.SphereGeometry(0.6, 32, 32);
@@ -49,7 +51,9 @@ const earthMaterial = new THREE.MeshPhongMaterial({
 // earth mesh
 const earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
 scene.add(earthMesh);
+//#endregion
 
+//#region Cloud
 // cloud Geometry
 const cloudGeometry = new THREE.SphereGeometry(0.63, 32, 32);
 
@@ -62,7 +66,9 @@ const cloudMetarial = new THREE.MeshPhongMaterial({
 // cloud mesh
 const cloudMesh = new THREE.Mesh(cloudGeometry, cloudMetarial);
 scene.add(cloudMesh);
+//#endregion
 
+//#region Galaxy
 // galaxy geometry
 const starGeometry = new THREE.SphereGeometry(80, 64, 64);
 
@@ -75,6 +81,9 @@ const starMaterial = new THREE.MeshBasicMaterial({
 // galaxy mesh
 const starMesh = new THREE.Mesh(starGeometry, starMaterial);
 scene.add(starMesh);
+//#endregion
+
+//#region Light, resizing, fps, spinning animation + render
 
 // ambient light
 const ambientlight = new THREE.AmbientLight(0xffffff, 0.2);
@@ -104,7 +113,7 @@ document.body.appendChild(stats.dom);
 // spinning animation
 const animate = () => {
     requestAnimationFrame(animate);
-    starMesh.rotation.y -= 0.002;
+    starMesh.rotation.y -= 0.0008;
     earthMesh.rotation.y -= 0.0015;
     cloudMesh.rotation.y -= 0.001;
     controls.update();
@@ -116,5 +125,5 @@ const animate = () => {
 const render = () => {
     renderer.render(scene, camera);
 }
-
+//#endregion
 animate();
